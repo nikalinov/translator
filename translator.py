@@ -4,6 +4,10 @@ import sys
 
 
 class InputException(Exception):
+    """
+    Input exception to be raised when the script
+    arguments are inappropriate/wrong
+    """
     def __init__(self, message):
         self.message = message
 
@@ -12,6 +16,10 @@ class InputException(Exception):
 
 
 class Translation:
+    """
+    Translation class. Functionality: parses translations and
+    examples of a word in the desired or all the available languages.
+    """
     def __init__(self, link, headers, word, src, trg,
                  examples_upto=5 * 2, transl_upto=-1):
         self.link = link
@@ -19,7 +27,7 @@ class Translation:
         self.word = word
         self.src_language = src
         self.trg_language = trg
-        self.examples_upto = examples_upto * 2
+        self.examples_upto = examples_upto
         self.transl_upto = transl_upto
         self.translations, self.examples = self.get_translation()
 
@@ -56,6 +64,11 @@ class Translation:
 
 
 class Translator:
+    """
+    Translator class. Functionality: take the expression
+    in the original language and translate to any or all
+    of the languages available.
+    """
     def __init__(self):
         self.link = "https://context.reverso.net/translation"
         self.headers = {'User-Agent': 'Mozilla/5.0'}
@@ -150,6 +163,11 @@ class Translator:
 
 
 class Writer:
+    """
+    Writer class. Whenever an instance is created and is assigned to stdout,
+    print messages are written both to stdout and the specified file. To
+    finish writing to the file, call get_initial_state function.
+    """
     def __init__(self, file):
         self.terminal = sys.stdout
         self.file = open(file, "w", encoding="utf-8")
